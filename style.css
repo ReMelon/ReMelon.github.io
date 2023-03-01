@@ -1,6 +1,7 @@
 .black-section {
     background-color: rgba(14, 16, 21, 0.381);
     height: 500px;
+    width: auto;
     position: relative;
 }
 
@@ -38,7 +39,7 @@ h1 {
     font-family: "Rubik", sans-serif;
     font-size: clamp(2em, 20vw, 4em);
     font-weight: 400;
-    margin: 0px;
+    margin-top: -1140px;
     padding: 20px;
     text-align: center
 }
@@ -55,7 +56,6 @@ h1 {
 h1>.magic {
     background: linear-gradient( to right, var(--purple), var(--violet), var(--pink), var(--purple));
     position: relative;
-    top: -1150px;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     white-space: nowrap;
