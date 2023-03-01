@@ -34,14 +34,9 @@ body {
     display: grid;
 }
 
-h1 {
-    color: white;
-    font-family: "Rubik", sans-serif;
-    font-size: clamp(2em, 20vw, 4em);
-    font-weight: 400;
-    margin-top: -1140px;
-    padding: 20px;
-    text-align: center
+.h1-hello {
+    text-align: left;
+    margin-top: -650px;
 }
 
 .black-section-over-magic {
@@ -53,10 +48,42 @@ h1 {
     padding: 0px;
 }
 
+.magicdiv {
+    margin-top: -1140px;
+    z-index: 1;
+}
+
 h1>.magic {
+    animation: background-pan 3s linear infinite;
     background: linear-gradient( to right, var(--purple), var(--violet), var(--pink), var(--purple));
-    position: relative;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     white-space: nowrap;
+}
+
+@keyframes background-pan {
+    from {
+        background-position: 0% center;
+    }
+    to {
+        background-position: -200% center;
+    }
+}
+
+h1 {
+    color: white;
+    font-family: "Rubik", sans-serif;
+    font-size: clamp(2em, 20vw, 4em);
+    font-weight: 400;
+    padding: 20px;
+    text-align: center
+}
+
+p {
+    color: white;
+    font-family: "Rubik", sans-serif;
+    font-size: clamp(2em, 1vw, 4em);
+    font-weight: 100;
+    padding: 20px;
+    text-align: left
 }
