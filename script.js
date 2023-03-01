@@ -1,14 +1,29 @@
-var images = ["image1.jpg", "image2.jpg", "image3.jpg", "image4.jpg"];
+window.onload = function() {
+    const section = document.querySelector('.section');
+    const imageContainer = document.querySelector('.image-container');
+    const images = Array.from(imageContainer.children);
 
-function displayRandomImage() {
-    var randomIndex = Math.floor(Math.random() * images.length);
-    var imageUrl = images[randomIndex];
-    var bannerContainer = document.querySelector(".banner-container");
-    bannerContainer.style.backgroundImage = "url('" + imageUrl + "')";
-    bannerContainer.classList.add("show-image");
-    setTimeout(function() {
-        bannerContainer.classList.remove("show-image");
-    }, 1000);
+    function setPosition() {
+        images.forEach((image) => {
+            const rect = image.getBoundingClientRect();
+            const x = Math.random() * (section.offsetWidth - rect.width);
+            const y = Math.random() * (section.offsetHeight - rect.height);
+            image.style.left = `${x}px`;
+            image.style.top = `${y}px`;
+        });
+    }
+
+    images.forEach((image) => {
+        image.style.opacity = 1;
+    });
+
+    setInterval(() => {
+        images.forEach((image) => {
+            image.style.opacity = 0;
+            setTimeout(() => {
+                setPosition();
+                image.style.opacity = 1;
+            }, 4000);
+        });
+    }, 8000);
 }
-
-setInterval(displayRandomImage, 3000);
