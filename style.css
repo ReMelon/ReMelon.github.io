@@ -41,17 +41,40 @@ body {
     place-items: center;
 }
 
+nav {
+    background-color: #333;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+nav ul li {
+    margin: 0 10px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+}
+
 h1 {
-    position: fixed;
-    top: 0;
-    left: 0;
     color: white;
     font-family: "Rubik", sans-serif;
-    font-size: clamp(2em, 2vw, 4em);
+    font-size: clamp(1.5em, 2vw, 3em);
+    /* changed font size */
     font-weight: 400;
-    margin: 0px;
+    margin: 0;
     padding: 20px;
-    text-align: center;
 }
 
 h1>.magic {
