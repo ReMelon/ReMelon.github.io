@@ -48,7 +48,8 @@ h1>.magic {
     height: 200px;
     position: relative;
     top: -890px;
-    padding: 0px;
+    padding: 0;
+    margin: 0;
 }
 
 .magicdiv {
@@ -112,14 +113,24 @@ p {
 
 .h1-hello {
     display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    text-align: left;
+    margin-top: -750px;
+}
+
+.langimageflex {
+    display: flex;
+    align-items: flex-end;
     flex-direction: column;
     text-align: left;
     margin-top: -750px;
 }
 
 .langimage {
-    margin-top: -350px;
-    margin-left: 900px;
+    padding: 0;
+    margin: 0;
+    align-items: flex-end;
     width: 50%;
     height: 50%;
     object-fit: contain;
