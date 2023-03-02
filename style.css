@@ -34,20 +34,28 @@
     --pink: rgb(244, 143, 177);
 }
 
+@keyframes background-pan {
+    from {
+        background-position: 0% center;
+    }
+    to {
+        background-position: -200% center;
+    }
+}
+
 h1>.magic {
-    animation: background-pan 3s linear infinite;
-    background: linear-gradient( to right, var(--purple), var(--violet), var(--pink), var(--purple));
+    background: linear-gradient(to right, var(--purple), var(--violet), var(--pink), var(--purple));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    white-space: nowrap;
+    animation: background-pan 3s linear infinite;
 }
 
 .black-section-over-magic {
     border-radius: 10px;
-    background-color: rgba(0, 0, 0, 0.522);
+    background-color: rgba(0, 0, 0, 0.771);
     height: 200px;
     position: relative;
-    top: -890px;
+    top: -980px;
     padding: 0;
     margin: 0;
 }
@@ -133,6 +141,82 @@ p {
     align-items: flex-end;
     width: 50%;
     height: 50%;
+    object-fit: contain;
+    /* or object-fit: contain; */
+}
+
+.h1-proj {
+    display: flex;
+    align-items: flex-end;
+    flex-direction: column;
+    text-align: right;
+    margin-top: -350px;
+}
+
+.projp {
+    text-align: right;
+}
+
+.chartimageflex {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    text-align: left;
+    margin-top: -300px;
+    margin-left: -150px;
+}
+
+.chartimage {
+    padding: 0;
+    margin: 0;
+    align-items: flex-end;
+    width: 60%;
+    height: 60%;
+    object-fit: contain;
+    /* or object-fit: contain; */
+}
+
+.h1-social {
+    display: flex;
+    align-items: flex-end;
+    flex-direction: column;
+    text-align: right;
+    margin-top: -190px;
+}
+
+.socialp {
+    text-align: right;
+}
+
+.socialimgflex {
+    display: flex;
+    align-items: flex-start;
+    text-align: left;
+    margin-top: -190px;
+}
+
+.h1-mc {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    text-align: left;
+    margin-top: -1px;
+}
+
+.mcimageflex {
+    display: flex;
+    align-items: flex-end;
+    flex-direction: column;
+    text-align: left;
+    margin-top: -1px;
+}
+
+.mcimage {
+    padding: 0;
+    margin: 0;
+    align-items: flex-end;
+    width: 60%;
+    height: 60%;
     object-fit: contain;
     /* or object-fit: contain; */
 }
