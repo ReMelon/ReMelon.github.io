@@ -1,6 +1,8 @@
+/*CSS for front page banner*/
+
 .black-section {
-    background-color: rgba(14, 16, 21, 0.381);
-    height: 500px;
+    background-color: rgb(0, 0, 0);
+    height: 575px;
     width: auto;
     position: relative;
 }
@@ -17,40 +19,19 @@
 .black-section-over {
     border-radius: 10px;
     background-color: rgba(0, 0, 0, 0.522);
-    height: 520px;
+    height: 575px;
     position: relative;
-    top: -500px;
+    top: -575px;
     padding: 0px;
 }
+
+
+/*CSS for front page gradient text*/
 
 :root {
     --purple: rgb(123, 31, 162);
     --violet: rgb(103, 58, 183);
     --pink: rgb(244, 143, 177);
-}
-
-body {
-    background-color: rgb(22, 24, 33);
-    display: grid;
-}
-
-.h1-hello {
-    text-align: left;
-    margin-top: -650px;
-}
-
-.black-section-over-magic {
-    border-radius: 10px;
-    background-color: rgba(0, 0, 0, 0.522);
-    height: 200px;
-    position: relative;
-    top: -990px;
-    padding: 0px;
-}
-
-.magicdiv {
-    margin-top: -1140px;
-    z-index: 1;
 }
 
 h1>.magic {
@@ -61,29 +42,86 @@ h1>.magic {
     white-space: nowrap;
 }
 
-@keyframes background-pan {
-    from {
-        background-position: 0% center;
-    }
-    to {
-        background-position: -200% center;
-    }
+.black-section-over-magic {
+    border-radius: 10px;
+    background-color: rgba(0, 0, 0, 0.522);
+    height: 200px;
+    position: relative;
+    top: -890px;
+    padding: 0px;
+}
+
+.magicdiv {
+    text-align: center;
+    margin-top: -1140px;
+    z-index: 1;
+}
+
+
+/*TRAILER CSS*/
+
+#trailer {
+    height: 20px;
+    width: 20px;
+    background-color: white;
+    border-radius: 20px;
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    z-index: 10000;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 500ms ease;
+}
+
+body:hover>#trailer {
+    opacity: 1;
+}
+
+
+/*Text Formatting/Main CSS*/
+
+body {
+    background-color: rgb(232, 233, 236);
+    display: grid;
+    margin: 0;
+    padding: 0;
 }
 
 h1 {
-    color: white;
+    color: rgb(131, 152, 191);
     font-family: "Rubik", sans-serif;
     font-size: clamp(2em, 20vw, 4em);
     font-weight: 400;
     padding: 20px;
-    text-align: center
+    margin: 0;
 }
 
 p {
-    color: white;
+    color: rgb(131, 152, 191);
     font-family: "Rubik", sans-serif;
     font-size: clamp(2em, 1vw, 4em);
     font-weight: 100;
     padding: 20px;
+    margin: 0;
     text-align: left
+}
+
+
+/*Positioning CSS*/
+
+.h1-hello {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    margin-top: -750px;
+}
+
+.langimage {
+    margin-top: -350px;
+    margin-left: 900px;
+    width: 50%;
+    height: 50%;
+    object-fit: contain;
+    /* or object-fit: contain; */
 }

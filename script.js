@@ -21,9 +21,9 @@ function fadeIn(element) {
             clearInterval(intervalId);
             setTimeout(() => {
                 fadeOut(element);
-            }, 2000);
+            }, 5000);
         }
-    }, 50);
+    }, 20);
 }
 
 function fadeOut(element) {
@@ -39,7 +39,7 @@ function fadeOut(element) {
             element.style.left = `${x}px`;
             fadeIn(element);
         }
-    }, 50);
+    }, 20);
 }
 
 let index = 0,
@@ -55,4 +55,21 @@ const animate = star => {
     star.style.animation = "none";
     star.offsetHeight;
     star.style.animation = "";
+}
+
+
+const trailer = document.getElementById("trailer");
+
+window.onmousemove = e => {
+    const x = e.clientX - trailer.offsetWidth / 2,
+        y = e.clientY - trailer.offsetHeight / 2;
+
+    const keyframes = {
+        transform: `translate(${x}px, ${y}px)`
+    }
+
+    trailer.animate(keyframes, {
+        duration: 800,
+        fill: "forwards"
+    })
 }
