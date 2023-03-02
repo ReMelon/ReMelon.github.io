@@ -28,6 +28,9 @@
 
 /*CSS for front page gradient text*/
 
+
+/*this isnt animating */
+
 :root {
     --purple: rgb(123, 31, 162);
     --violet: rgb(103, 58, 183);
@@ -43,10 +46,14 @@
     }
 }
 
+
+/*because those are for the sparkles i think*/
+
 h1>.magic {
     background: linear-gradient(to right, var(--purple), var(--violet), var(--pink), var(--purple));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    background-size: 200%;
     animation: background-pan 3s linear infinite;
 }
 
@@ -190,6 +197,7 @@ p {
 
 .socialimgflex {
     display: flex;
+    flex-direction: column;
     align-items: flex-start;
     text-align: left;
     margin-top: -190px;
@@ -197,15 +205,15 @@ p {
 
 .h1-mc {
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     flex-direction: column;
-    text-align: left;
+    text-align: center;
     margin-top: -1px;
 }
 
 .mcimageflex {
     display: flex;
-    align-items: flex-end;
+    align-items: center;
     flex-direction: column;
     text-align: left;
     margin-top: -1px;
@@ -214,9 +222,34 @@ p {
 .mcimage {
     padding: 0;
     margin: 0;
-    align-items: flex-end;
+    align-items: center;
     width: 60%;
     height: 60%;
     object-fit: contain;
     /* or object-fit: contain; */
+}
+
+.pmc {
+    text-align: center;
+}
+
+.gallery {
+    margin: 10px 50px;
+}
+
+.gallery img {
+    width: 230px;
+    height: 230px;
+    padding: 5px;
+    object-fit: cover;
+    position: absolute;
+    transition: 1s;
+}
+
+.gallery img:hover {
+    width: 60%;
+    height: 60%;
+    object-fit: contain;
+    position: relative;
+    z-index: 1;
 }
