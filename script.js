@@ -73,3 +73,36 @@ window.onmousemove = e => {
         fill: "forwards"
     })
 }
+
+
+
+
+
+const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
+let interval_a = null;
+
+document.querySelector(".magicdiv").onmouseover = event => {
+    let iteration = 0;
+
+    clearInterval(interval_a);
+
+    interval_a = setInterval(() => {
+        event.target.querySelector(".magic").innerText = event.target.querySelector(".magic").innerText
+            .split("")
+            .map((letter, index) => {
+                if (index < iteration) {
+                    return event.target.querySelector(".magic").dataset.value[index];
+                }
+
+                return letters[Math.floor(Math.random() * 26)]
+            })
+            .join("");
+
+        if (iteration >= event.target.querySelector(".magic").dataset.value.length) {
+            clearInterval(interval_a);
+        }
+
+        iteration += 1 / 3;
+    }, 30);
+}
