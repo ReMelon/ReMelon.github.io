@@ -103,7 +103,7 @@ body {
 }
 
 h1 {
-    color: rgb(113, 134, 148);
+    color: rgb(7, 11, 21);
     font-family: "Rubik", sans-serif;
     font-size: clamp(2em, 20vw, 4em);
     font-weight: 400;
@@ -112,7 +112,7 @@ h1 {
 }
 
 p {
-    color: rgb(113, 134, 148);
+    color: rgb(7, 11, 21);
     font-family: "Rubik", sans-serif;
     font-size: clamp(2em, 1vw, 4em);
     font-weight: 100;
@@ -284,7 +284,7 @@ p {
     position: absolute;
     width: 100%;
     height: 100%;
-    background: rgba(57, 57, 57, 0.502);
+    background: rgba(7, 11, 21, 0.502);
     top: 0;
     left: 0;
     transform: scale(0);
