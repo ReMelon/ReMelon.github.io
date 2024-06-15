@@ -12,17 +12,17 @@ const slotWidth = width / cols;
 const slotHeight = height / rows;
 
 // Create an array to keep track of occupied slots
-const occupiedSlots = Array(rows).fill().map(() => Array(cols).fill(false));
+const occupiedSlots = Array.from({ length: rows }, () => Array(cols).fill(false));
 
 function placeImageInRandomSlot(image) {
     let row, col;
-    let tries = 0; // Limit the number of tries to avoid infinite loops
+    let tries = 0;
     const maxTries = 100;
-    
+
     do {
         if (tries++ > maxTries) {
             console.error("Could not find an empty slot");
-            return; // Exit if we can't find a slot after several tries
+            return false;
         }
         row = Math.floor(Math.random() * rows);
         col = Math.floor(Math.random() * cols);
@@ -33,11 +33,12 @@ function placeImageInRandomSlot(image) {
     const x = col * slotWidth + (slotWidth - image.width) / 2;
     const y = row * slotHeight + (slotHeight - image.height) / 2;
 
-    image.style.position = 'absolute'; // Make sure images are positioned absolutely
+    image.style.position = 'absolute';
     image.style.top = `${y}px`;
     image.style.left = `${x}px`;
 
     fadeIn(image, row, col);
+    return true;
 }
 
 function fadeIn(element, row, col) {
@@ -62,17 +63,22 @@ function fadeOut(element, row, col) {
         element.style.opacity = opacity;
         if (opacity <= 0) {
             clearInterval(intervalId);
-            occupiedSlots[row][col] = false; // Free up the slot
+            occupiedSlots[row][col] = false;
 
-            placeImageInRandomSlot(element); // Place the image in a new slot
+            if (!placeImageInRandomSlot(element)) {
+                console.error("Failed to reposition the image");
+            }
         }
     }, 20);
 }
 
 // Initialize the placement of all images
 images.forEach(image => {
-    placeImageInRandomSlot(image);
+    if (!placeImageInRandomSlot(image)) {
+        console.error("Failed to place the image initially");
+    }
 });
+
 
 
 
