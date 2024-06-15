@@ -2,29 +2,35 @@ const images = document.querySelectorAll('.image');
 const blackSection = document.querySelector('.black-section');
 const height = blackSection.offsetHeight;
 const width = blackSection.offsetWidth;
-const occupiedAreas = [];
+
+// Define the number of rows and columns in the grid
+const rows = 4;
+const cols = 4;
+
+// Calculate the width and height of each slot in the grid
+const slotWidth = width / cols;
+const slotHeight = height / rows;
+
+// Create an array to keep track of occupied slots
+const occupiedSlots = Array(rows).fill().map(() => Array(cols).fill(false));
 
 images.forEach(image => {
-    let x, y;
+    let row, col;
     do {
-        x = Math.floor(Math.random() * (width - image.width));
-        y = Math.floor(Math.random() * (height - image.height));
-    } while (isOverlapping(x, y, image.width, image.height));
-    
-    occupiedAreas.push({x, y, width: image.width, height: image.height});
+        row = Math.floor(Math.random() * rows);
+        col = Math.floor(Math.random() * cols);
+    } while (occupiedSlots[row][col]);
+
+    occupiedSlots[row][col] = true;
+
+    const x = col * slotWidth + (slotWidth - image.width) / 2;
+    const y = row * slotHeight + (slotHeight - image.height) / 2;
+
+    image.style.position = 'absolute'; // Make sure images are positioned absolutely
     image.style.top = `${y}px`;
     image.style.left = `${x}px`;
     fadeIn(image);
 });
-
-function isOverlapping(x, y, width, height) {
-    for (let area of occupiedAreas) {
-        if (!(x + width < area.x || x > area.x + area.width || y + height < area.y || y > area.y + area.height)) {
-            return true;
-        }
-    }
-    return false;
-}
 
 function fadeIn(element) {
     element.style.opacity = 0;
@@ -49,13 +55,17 @@ function fadeOut(element) {
         if (opacity <= 0) {
             clearInterval(intervalId);
 
-            let x, y;
+            let row, col;
             do {
-                x = Math.floor(Math.random() * (width - element.width));
-                y = Math.floor(Math.random() * (height - element.height));
-            } while (isOverlapping(x, y, element.width, element.height));
-            
-            occupiedAreas.push({x, y, width: element.width, height: element.height});
+                row = Math.floor(Math.random() * rows);
+                col = Math.floor(Math.random() * cols);
+            } while (occupiedSlots[row][col]);
+
+            occupiedSlots[row][col] = true;
+
+            const x = col * slotWidth + (slotWidth - element.width) / 2;
+            const y = row * slotHeight + (slotHeight - element.height) / 2;
+
             element.style.top = `${y}px`;
             element.style.left = `${x}px`;
 
@@ -63,6 +73,7 @@ function fadeOut(element) {
         }
     }, 20);
 }
+
 
 
 let index = 0,
