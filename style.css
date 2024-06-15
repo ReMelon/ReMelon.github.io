@@ -92,6 +92,22 @@ body:hover>#trailer {
     opacity: 1;
 }
 
+        .hero-header, .hero-footer {
+            position: relative;
+            height: 300px;
+            background-color: #f0f0f0;
+            overflow: hidden;
+        }
+        .hero-image {
+            position: absolute;
+            width: 100px;
+            height: auto; /* Maintain aspect ratio */
+            transition: transform 0.75s ease-in-out;
+        }
+        .is-animated {
+            transform: scale(1.2);
+        }
+
 
 /*Text Formatting/Main CSS*/
 
