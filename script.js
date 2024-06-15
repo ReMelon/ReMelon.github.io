@@ -2,14 +2,29 @@ const images = document.querySelectorAll('.image');
 const blackSection = document.querySelector('.black-section');
 const height = blackSection.offsetHeight;
 const width = blackSection.offsetWidth;
+const occupiedAreas = [];
 
 images.forEach(image => {
-    const x = Math.floor(Math.random() * (width - image.width));
-    const y = Math.floor(Math.random() * (height - image.height));
+    let x, y;
+    do {
+        x = Math.floor(Math.random() * (width - image.width));
+        y = Math.floor(Math.random() * (height - image.height));
+    } while (isOverlapping(x, y, image.width, image.height));
+    
+    occupiedAreas.push({x, y, width: image.width, height: image.height});
     image.style.top = `${y}px`;
     image.style.left = `${x}px`;
     fadeIn(image);
 });
+
+function isOverlapping(x, y, width, height) {
+    for (let area of occupiedAreas) {
+        if (!(x + width < area.x || x > area.x + area.width || y + height < area.y || y > area.y + area.height)) {
+            return true;
+        }
+    }
+    return false;
+}
 
 function fadeIn(element) {
     element.style.opacity = 0;
@@ -33,14 +48,22 @@ function fadeOut(element) {
         element.style.opacity = opacity;
         if (opacity <= 0) {
             clearInterval(intervalId);
-            const x = Math.floor(Math.random() * (width - element.width));
-            const y = Math.floor(Math.random() * (height - element.height));
+
+            let x, y;
+            do {
+                x = Math.floor(Math.random() * (width - element.width));
+                y = Math.floor(Math.random() * (height - element.height));
+            } while (isOverlapping(x, y, element.width, element.height));
+            
+            occupiedAreas.push({x, y, width: element.width, height: element.height});
             element.style.top = `${y}px`;
             element.style.left = `${x}px`;
+
             fadeIn(element);
         }
     }, 20);
 }
+
 
 let index = 0,
     interval = 1000;
