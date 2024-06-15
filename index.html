@@ -17,15 +17,21 @@
     </div>
 
     <div class="black-section">
-        <img src="images/banner/1.png" class="image" />
-        <img src="images/banner/2.png" class="image" />
-        <img src="images/banner/3.png" class="image" />
-        <img src="images/banner/4.png" class="image" />
-        <img src="images/banner/5.png" class="image" />
-        <img src="images/banner/6.png" class="image" />
-        <img src="images/banner/7.png" class="image" />
-        <img src="images/banner/8.png" class="image" />
+<div class="hero-header">
+    <img class="hero-image" data-src="images/banner/1.png" alt="Hero 1">
+    <img class="hero-image" data-src="images/banner/2.png" alt="Hero 2">
+    <img class="hero-image" data-src="images/banner/3.png" alt="Hero 3">
+</div>
+
+<div class="hero-footer">
+    <img class="hero-image" data-src="images/banner/4.png" alt="Hero 4">
+    <img class="hero-image" data-src="images/banner/5.png" alt="Hero 5">
+    <img class="hero-image" data-src="images/banner/6.png" alt="Hero 6">
+</div>
+
     </div>
+
+    
 
     <div class="black-section-over">
     </div>
@@ -129,5 +135,74 @@
 
     <script src="script.js "></script>
 </body>
+
+        <script>
+        var initHero = function() {
+            var headerHeroes = document.querySelectorAll('.hero-header .hero-image');
+            var headerHeroIndices = shuffle(Array.from(Array(headerHeroes.length).keys()));
+            var hi = headerHeroIndices[0];
+            setInterval(function() {
+                initImage(headerHeroes[headerHeroIndices[hi]]);
+                hi = (hi < (headerHeroes.length - 1)) ? hi + 1 : 0;
+            }, 750);
+            var footerHeroes = document.querySelectorAll('.hero-footer .hero-image');
+            var footerHeroIndices = shuffle(Array.from(Array(footerHeroes.length).keys()));
+            var fi = footerHeroIndices[0];
+            setTimeout(function() {
+                setInterval(function() {
+                    initImage(footerHeroes[footerHeroIndices[fi]]);
+                    fi = (fi < (footerHeroes.length - 1)) ? fi + 1 : 0;
+                }, 750);
+            }, 10000);
+        };
+        
+        var shuffle = function(array) {
+            var currentIndex = array.length;
+            var temporaryValue;
+            var randomIndex;
+            while (0 !== currentIndex) {
+                randomIndex = Math.floor(Math.random() * currentIndex);
+                currentIndex -= 1;
+                temporaryValue = array[currentIndex];
+                array[currentIndex] = array[randomIndex];
+                array[randomIndex] = temporaryValue;
+            }
+            return array;
+        };
+
+        window.z = 1;
+
+        var initImage = function(el) {
+            if (!el.src) {
+                el.src = el.getAttribute('data-src');
+                el.addEventListener('load', function() {
+                    animateImage(this);
+                });
+            } else {
+                animateImage(el);
+            }
+        };
+
+        var animateImage = function(el) {
+            setRandomPosition(el);
+            el.style.zIndex = window.z;
+            el.classList.add('is-animated');
+            setTimeout(function() {
+                el.classList.remove('is-animated');
+            }, 2000);
+            window.z += 1;
+        };
+
+        var setRandomPosition = function(el) {
+            var x = Math.random() * 100;
+            var y = Math.random() * 100;
+            el.style.left = x + '%';
+            el.style.top = y + '%';
+        };
+
+        document.addEventListener('DOMContentLoaded', function() {
+            initHero();
+        });
+    </script>
 
 </html>
