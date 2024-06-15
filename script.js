@@ -1,4 +1,5 @@
-const images = document.querySelectorAll('.image');
+const imageNames = ['1.png', '2.png', '3.png', '4.png', '5.png', '6.png', '7.png', '8.png'];
+const images = imageNames.map(name => document.querySelector(`img[src="${name}"]`));
 const blackSection = document.querySelector('.black-section');
 const height = blackSection.offsetHeight;
 const width = blackSection.offsetWidth;
@@ -78,6 +79,7 @@ images.forEach(image => {
         console.error("Failed to place the image initially");
     }
 });
+
 
 
 
