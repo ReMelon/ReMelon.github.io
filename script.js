@@ -14,9 +14,16 @@ const slotHeight = height / rows;
 // Create an array to keep track of occupied slots
 const occupiedSlots = Array(rows).fill().map(() => Array(cols).fill(false));
 
-images.forEach(image => {
+function placeImageInRandomSlot(image) {
     let row, col;
+    let tries = 0; // Limit the number of tries to avoid infinite loops
+    const maxTries = 100;
+    
     do {
+        if (tries++ > maxTries) {
+            console.error("Could not find an empty slot");
+            return; // Exit if we can't find a slot after several tries
+        }
         row = Math.floor(Math.random() * rows);
         col = Math.floor(Math.random() * cols);
     } while (occupiedSlots[row][col]);
@@ -29,10 +36,11 @@ images.forEach(image => {
     image.style.position = 'absolute'; // Make sure images are positioned absolutely
     image.style.top = `${y}px`;
     image.style.left = `${x}px`;
-    fadeIn(image);
-});
 
-function fadeIn(element) {
+    fadeIn(image, row, col);
+}
+
+function fadeIn(element, row, col) {
     element.style.opacity = 0;
     let opacity = 0;
     const intervalId = setInterval(() => {
@@ -41,38 +49,36 @@ function fadeIn(element) {
         if (opacity >= 1) {
             clearInterval(intervalId);
             setTimeout(() => {
-                fadeOut(element);
+                fadeOut(element, row, col);
             }, 5000);
         }
     }, 20);
 }
 
-function fadeOut(element) {
+function fadeOut(element, row, col) {
     let opacity = 1;
     const intervalId = setInterval(() => {
         opacity -= 0.05;
         element.style.opacity = opacity;
         if (opacity <= 0) {
             clearInterval(intervalId);
+            occupiedSlots[row][col] = false; // Free up the slot
 
-            let row, col;
-            do {
-                row = Math.floor(Math.random() * rows);
-                col = Math.floor(Math.random() * cols);
-            } while (occupiedSlots[row][col]);
-
-            occupiedSlots[row][col] = true;
-
-            const x = col * slotWidth + (slotWidth - element.width) / 2;
-            const y = row * slotHeight + (slotHeight - element.height) / 2;
-
-            element.style.top = `${y}px`;
-            element.style.left = `${x}px`;
-
-            fadeIn(element);
+            placeImageInRandomSlot(element); // Place the image in a new slot
         }
     }, 20);
 }
+
+// Initialize the placement of all images
+images.forEach(image => {
+    placeImageInRandomSlot(image);
+});
+
+
+
+
+
+
 
 
 
